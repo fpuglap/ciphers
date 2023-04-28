@@ -1,55 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-
-function decryptCaesarCipher(ciphertext: string, key: number): string {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const shift = key % alphabet.length; // Calculate the shift amount
-  let plaintext = '';
-
-  for (let i = 0; i < ciphertext.length; i++) {
-    const letter = ciphertext[i];
-    const letterIndex = alphabet.indexOf(letter.toUpperCase()); // Find the index of the letter in the alphabet
-    if (letterIndex === -1) {
-      plaintext += letter; // If it's not a letter, add it to the plaintext as is
-    } else {
-      const shiftedIndex =
-        (letterIndex - shift + alphabet.length) % alphabet.length; // Calculate the new index of the letter
-      const shiftedLetter = alphabet[shiftedIndex];
-      plaintext +=
-        letter === letter.toLowerCase()
-          ? shiftedLetter.toLowerCase()
-          : shiftedLetter; // Maintain the case of the original letter
-    }
-  }
-
-  return plaintext;
-}
-
-const encryptCaesarCipher = (str: string, num: number) => {
-  num = num % 26; // Ensure num is within the range of the alphabet
-  const lowerCaseStr = str.toLowerCase();
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  let newStr = '';
-
-  for (let i = 0; i < lowerCaseStr.length; i++) {
-    let currentLetter = lowerCaseStr[i];
-    if (currentLetter === ' ') {
-      newStr += currentLetter;
-      continue;
-    }
-    let currentIndex = alphabet.indexOf(currentLetter); // Get current letter index in alphabet
-    let newIndex = currentIndex + num; // Calculate new index based on the shift
-    if (newIndex > 25) newIndex = newIndex - 26; // Handle wrapping around to the start of the alphabet
-    if (newIndex < 0) newIndex = 26 + newIndex; // Handle wrapping around to the end of the alphabet
-    if (str[i] === str[i].toUpperCase()) {
-      newStr += alphabet[newIndex].toUpperCase();
-    } else {
-      newStr += alphabet[newIndex];
-    }
-  }
-  return newStr;
-};
+import { decryptMessage, encryptMessage } from '@/utils/helpers';
 
 const Cipher = () => {
   const [encryptedMessage, setEncryptedMessage] = useState('');
@@ -57,8 +9,8 @@ const Cipher = () => {
 
   const handleChange = (event: { target: { value: string } }) => {
     const input = event.target.value;
-    const decrypted = decryptCaesarCipher(input, 1);
-    const encrypted = encryptCaesarCipher(input, 1);
+    const decrypted = decryptMessage(input, 1);
+    const encrypted = encryptMessage(input, 1);
     setDecryptedMessage(decrypted);
     setEncryptedMessage(encrypted);
   };
