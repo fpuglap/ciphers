@@ -28,34 +28,27 @@ export const decryptMessage = (message: string, key: number): string => {
   return phrase;
 };
 
-export const encryptMessage = (message: string, key: number) => {
-  key = key % alphabetLength; // Ensure key is within the range of the alphabet
+export const encryptMessage = (message: string, key: number): string => {
+  const shift = key % alphabetLength;
+  let result = '';
 
-  const upperCaseStr = message.toUpperCase();
-  const alphabetArray = alphabet.split('');
-  let newStr = '';
+  for (let i = 0; i < message.length; i++) {
+    const letter = message[i];
+    const letterIndex = alphabet.indexOf(letter.toUpperCase());
 
-  for (let i = 0; i < upperCaseStr.length; i++) {
-    let currentLetter = upperCaseStr[i];
-
-    if (currentLetter === ' ') {
-      newStr += currentLetter;
-      continue;
-    }
-
-    let currentIndex = alphabetArray.indexOf(currentLetter); // Get current letter index in alphabet
-    let newIndex = currentIndex + key; // Calculate new index based on the shift
-
-    if (newIndex > alphabetLength - 1) newIndex = newIndex - alphabetLength; // Handle wrapping around to the start of the alphabet
-
-    if (newIndex < 0) newIndex = alphabetLength + newIndex; // Handle wrapping around to the end of the alphabet
-
-    if (message[i] === message[i].toUpperCase()) {
-      newStr += alphabetArray[newIndex];
+    if (letterIndex === -1) {
+      // Not a letter (space, punctuation, number, etc.) - keep as is
+      result += letter;
     } else {
-      newStr += alphabetArray[newIndex].toLowerCase();
+      const shiftedIndex = (letterIndex + shift) % alphabetLength;
+      const shiftedLetter = alphabet[shiftedIndex];
+
+      // Maintain the original case
+      result += letter === letter.toLowerCase()
+        ? shiftedLetter.toLowerCase()
+        : shiftedLetter;
     }
   }
 
-  return newStr;
+  return result;
 };
