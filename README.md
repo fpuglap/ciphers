@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Caesar Shift Cipher
+
+An interactive web application that demonstrates the classic Caesar Shift Cipher encryption technique, famously used by Julius Caesar to protect military messages.
+
+![Caesar Shift Cipher Preview](/public/caesar-og.png)
+
+## Features
+
+- **Interactive Demo**: Decrypt a hidden message with one click
+- **Try It Yourself**: Encrypt your own messages in real-time
+- **Educational Content**: Learn about the history of cryptography
+- **Responsive Design**: Works seamlessly on mobile and desktop
+
+## Tech Stack
+
+- [Next.js 15](https://nextjs.org/) - React framework
+- [React 18](https://react.dev/) - UI library
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Live Demo
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+[https://caesar-shift-cipher.vercel.app](https://caesar-shift-cipher.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## How It Works
 
-## Learn More
+The Caesar Shift Cipher works by shifting each letter in the alphabet by a fixed number of positions. For example, with a shift of 1:
+- A becomes B
+- B becomes C
+- Z becomes A
 
-To learn more about Next.js, take a look at the following resources:
+To decrypt, simply shift in the opposite direction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+*"Fere libenter homines id quod volunt credunt."*
+— Julius Caesar
